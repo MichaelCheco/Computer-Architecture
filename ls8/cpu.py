@@ -78,6 +78,18 @@ class CPU:
 
     def run(self):
         """Run the CPU."""
+
         IR = self.ram_read(self.pc)
+        values = list(str(IR))
         operand_a = self.ram_read(self.pc + 1)
         operand_b = self.ram_read(self.pc + 2)
+        AA = values[0:2]
+        B = values[2:3]
+        C = values[3:4]
+        DDDD = values[4:]
+# Meanings of the bits in the first byte of each instruction: AABCDDDD
+
+# AA Number of operands for this opcode, 0-2
+# B 1 if this is an ALU operation
+# C 1 if this instruction sets the PC
+# DDDD Instruction identifier

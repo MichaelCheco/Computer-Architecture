@@ -33,19 +33,26 @@ class CPU:
             self.ram[address] = instruction
             address += 1
 
-    def ram_read(self, pc):
-        val_to_read = self.ram[pc]
-        return val_to_read
+    def ram_read(self, MAR):
+        MDR = self.ram[pc]
+        return MDR
 
-    def ram_write(self):
-        pass
+    def ram_write(self, MAR, MDR):
+        self.ram[MAR] = MDR
+        return MDR
 
     def alu(self, op, reg_a, reg_b):
         """ALU operations."""
 
         if op == "ADD":
             self.reg[reg_a] += self.reg[reg_b]
-        # elif op == "SUB": etc
+        elif op == "SUB":
+            pass
+        elif op == "LD":
+            pass
+        elif op == "ST":
+            pass
+
         else:
             raise Exception("Unsupported ALU operation")
 
@@ -71,4 +78,6 @@ class CPU:
 
     def run(self):
         """Run the CPU."""
-        pass
+        IR = self.ram_read(self.pc)
+        operand_a = self.ram_read(self.pc + 1)
+        operand_b = self.ram_read(self.pc + 2)

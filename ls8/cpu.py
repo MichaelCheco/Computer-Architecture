@@ -8,7 +8,7 @@ class CPU:
 
     def __init__(self):
         """Construct a new CPU."""
-        self.ram = []
+        self.ram = [0] * 8
         self.reg = [0] * 8
         self.pc = 0
 
@@ -34,7 +34,8 @@ class CPU:
             address += 1
 
     def ram_read(self, pc):
-        pass
+        val_to_read = self.ram[pc]
+        return val_to_read
 
     def ram_write(self):
         pass

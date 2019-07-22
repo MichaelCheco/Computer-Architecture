@@ -83,10 +83,10 @@ class CPU:
         values = list(str(IR))
         operand_a = self.ram_read(self.pc + 1)
         operand_b = self.ram_read(self.pc + 2)
-        AA = values[0:2]
-        B = values[2:3]
-        C = values[3:4]
-        DDDD = values[4:]
+        num_of_operands = values[0:2]
+        is_alu = values[2:3]
+        sets_pc = values[3:4]
+        instruction_identifer = values[4:]
 # Meanings of the bits in the first byte of each instruction: AABCDDDD
 
 # AA Number of operands for this opcode, 0-2

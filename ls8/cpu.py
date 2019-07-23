@@ -8,7 +8,7 @@ class CPU:
 
     def __init__(self):
         """Construct a new CPU."""
-        self.ram = [0] * 8
+        self.ram = [0] * 256
         self.reg = [0] * 8
         self.pc = 0
 
@@ -25,7 +25,7 @@ class CPU:
             0b00000000,
             0b00001000,
             0b01000111,  # PRN R0
-            0b00000000,
+            0b00000000,  # NOP - Do nothing
             0b00000001,  # HLT
         ]
 
@@ -34,7 +34,7 @@ class CPU:
             address += 1
 
     def ram_read(self, MAR):
-        MDR = self.ram[pc]
+        MDR = self.ram[MAR]
         return MDR
 
     def ram_write(self, MAR, MDR):
@@ -87,6 +87,11 @@ class CPU:
         is_alu = values[2:3]
         sets_pc = values[3:4]
         instruction_identifer = values[4:]
+        while True:
+
+            if is_alu == '1':
+                self.alu(num_of_operands, operand_a, operand_b)
+            elif
 # Meanings of the bits in the first byte of each instruction: AABCDDDD
 
 # AA Number of operands for this opcode, 0-2

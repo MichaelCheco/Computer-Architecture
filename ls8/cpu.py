@@ -77,23 +77,12 @@ class CPU:
 
     def run(self):
         """Run the CPU."""
+        running = True
 
-        IR = self.ram_read(self.pc)
-        values = list(str(IR))
-        operand_a = self.ram_read(self.pc + 1)
-        operand_b = self.ram_read(self.pc + 2)
-        num_of_operands = values[0:2]
-        is_alu = values[2:3]
-        sets_pc = values[3:4]
-        instruction_identifer = values[4:]
-        while True:
-
-            if is_alu == '1':
-                self.alu(num_of_operands, operand_a, operand_b)
-            elif
-# Meanings of the bits in the first byte of each instruction: AABCDDDD
-
-# AA Number of operands for this opcode, 0-2
-# B 1 if this is an ALU operation
-# C 1 if this instruction sets the PC
-# DDDD Instruction identifier
+        while running:
+            IR = self.ram[self.pc]
+            operand_a = self.ram[self.pc + 1]
+            operand_b = self.ram[self.pc + 2]
+            if IR == 0b00000001:
+                running = False
+                self.pc += 1

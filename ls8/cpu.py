@@ -12,22 +12,27 @@ class CPU:
         self.reg = [0] * 8
         self.pc = 0
 
-    def load(self, program):
+    def load(self, path):
         """Load a program into memory."""
 
         address = 0
-
+        program = []
         # For now, we've just hardcoded a program:
 
-        program = [
-            # From print8.ls8
-            0b10000010,  # LDI R0,8
-            0b00000000,
-            0b00001000,
-            0b01000111,  # PRN R0
-            0b00000000,  # NOP - Do nothing
-            0b00000001,  # HLT
-        ]
+        # program = [
+        #     # From print8.ls8
+        #     0b10000010,  # LDI R0,8
+        #     0b00000000,
+        #     0b00001000,
+        #     0b01000111,  # PRN R0
+        #     0b00000000,  # NOP - Do nothing
+        #     0b00000001,  # HLT
+        # ]
+        with open(path) as f:
+            for l in f:
+                instr = l.split("#", 1)[0].strip()
+                if len(instr):
+                    program.append(int(instr, 2))
 
         for instruction in program:
             self.ram[address] = instruction

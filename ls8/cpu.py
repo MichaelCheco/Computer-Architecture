@@ -39,7 +39,6 @@ class CPU:
 
     def ram_write(self, MAR, MDR):
         self.ram[MAR] = MDR
-        return MDR
 
     def alu(self, op, reg_a, reg_b):
         """ALU operations."""

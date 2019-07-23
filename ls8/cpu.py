@@ -12,7 +12,7 @@ class CPU:
         self.reg = [0] * 8
         self.pc = 0
 
-    def load(self):
+    def load(self, program):
         """Load a program into memory."""
 
         address = 0
@@ -86,3 +86,9 @@ class CPU:
             if IR == 0b00000001:
                 running = False
                 self.pc += 1
+            elif IR == 0b10000010:
+                self.reg[operand_a] = operand_b
+                self.pc += 3
+            elif IR == 0b01000111:
+                print(self.reg[operand_a])
+                self.pc += 2

@@ -158,7 +158,7 @@ class CPU:
 
         while self.running:
             IR = self.ram[self.pc]
-            operand_count = (IR & 0b11000000) >> 6
+            op_count = (IR & 0b11000000) >> 6
             sets_pc = (IR & 0b00010000) >> 4
             operand_a = self.ram[self.pc + 1]
             operand_b = self.ram[self.pc + 2]
@@ -171,4 +171,4 @@ class CPU:
 
             command()
             if not sets_pc:
-                self.pc += (operand_count + 1)
+                self.pc += (op_count + 1)
